@@ -2,12 +2,11 @@ package io.debezium.server.graal;
 
 import javax.enterprise.context.Dependent;
 
+import io.debezium.server.StreamNameMapper;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 
-import io.debezium.server.StreamNameMapper;
-
 @Dependent
-public class GraalNameMapper implements StreamNameMapper{
+public class GraalNameMapper implements StreamNameMapper {
     @ConfigProperty(name = "mapper.tenant")
     String tenant;
 
@@ -16,6 +15,7 @@ public class GraalNameMapper implements StreamNameMapper{
 
     @Override
     public String map(String topic) {
-        return tenant + "/" + namespace + '/' + topic;
+        return tenant + "/" + namespace + "/" + topic;
     }
 }
+
